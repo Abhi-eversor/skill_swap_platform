@@ -5,6 +5,7 @@ const swapSchema = new mongoose.Schema({
   responder: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   skillOffered: { type: String, required: true },
   skillRequested: { type: String, required: true },
+  message: { type: String, maxlength: 1000, default: '' },
   status: {
     type: String,
     enum: ['pending', 'accepted', 'rejected', 'cancelled'],

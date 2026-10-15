@@ -1,25 +1,22 @@
-const express = require('express');
-const connectDB = require('./config/db');
-const cors = require('cors');
 require('dotenv').config();
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+const app = require('./app');
+const connectDB = require('./config/db');
+const { validateEnvironment } = require('./config/env');
 
-// Connect to DB
-connectDB();
+async function start() {
+  const config = validateEnvironment(process.env);
+  await connectDB(config.mongoUri);
+  return app.listen(config.port, () => {
+    console.log(`Server running on port ${config.port}`);
+  });
+}
 
-// Routes
-// app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/user', require('./routes/authRoutes'));
-// app.use('/api/swaps', require('./routes/swapRoutes'));
-// app.use('/api/admin', require('./routes/adminRoutes'));
+if (require.main === module) {
+  start().catch((error) => {
+    console.error(`Could not start server: ${error.message}`);
+    process.exitCode = 1;
+  });
+}
 
-app.get('/' , (req,res)=>{
-    res.send("api get working");
-    
-})
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+module.exports = { app, start };

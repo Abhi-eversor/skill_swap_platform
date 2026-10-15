@@ -1,18 +1,29 @@
-import React from "react";
+﻿import { Link, useNavigate } from 'react-router-dom';
+import { startTransition } from 'react';
+import useAuth from '../auth/useAuth';
 
-const Header = () => (
-  <header className="flex justify-between items-center bg-gradient-to-r from-indigo-800 via-purple-800 to-indigo-800 px-6 py-4 rounded-t-2xl shadow-md text-white">
-    <h1 className="text-2xl font-bold tracking-wide">Skill Swap Platform</h1>
-    <div className="flex items-center gap-6">
-      <button className="border-b-2 border-white font-medium text-sm pb-1 hover:text-gray-200 transition-all">
-        Swap Request
-      </button>
-      <img
-        src="/profile-pic.jpg"
-        alt="Profile"
-        className="w-10 h-10 rounded-full border-2 border-white shadow-sm"
-      />
-    </div>
-  </header>
-);
-export default Header;
+export default function Header() {
+  const { user, loading, logout } = useAuth();
+  const navigate = useNavigate();
+  return (
+    <header className="site-header">
+      <Link to="/" className="brand">Skill Swap Platform</Link>
+      <nav aria-label="Main navigation">
+        <Link to="/">Home</Link>
+        {!loading && (user ? <>
+          <Link to="/swaps">Swap requests</Link>
+          <Link to="/userprofile">My profile</Link>
+          <button type="button" className="button button-small" onClick={() => {
+            startTransition(() => {
+              logout();
+              navigate('/', { replace: true });
+            });
+          }}>Log out</button>
+        </> : <>
+          <Link to="/login">Log in</Link>
+          <Link className="button button-small" to="/register">Register</Link>
+        </>)}
+      </nav>
+    </header>
+  );
+}
