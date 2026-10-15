@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const adminActivitySchema = new mongoose.Schema({
   admin: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  action: { type: String, required: true }, // e.g., "Ban user", "Delete skill", etc.
+  action: { type: String, required: true },
   targetUser: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   targetSkill: { type: mongoose.Schema.Types.ObjectId, ref: 'Skill' },
   notes: { type: String }

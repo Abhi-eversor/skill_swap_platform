@@ -1,12 +1,9 @@
-# React + Vite
+﻿# Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React client for Skill Swap Platform. Install with `npm ci`, then run `npm run dev`. Start the backend on port 5000 first; Vite proxies `/api` to it.
 
-Currently, two official plugins are available:
+For a separate API host, set `VITE_API_URL` in `.env` before building. Production hosting must forward client-side routes to `index.html` and route `/api` to the backend, or use a separate `VITE_API_URL`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+`npm run lint` checks the source; `npm run build` creates `dist/`.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+See the [project README](../README.md) for backend setup and supported features.

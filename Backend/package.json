@@ -1,13 +1,15 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "Odoo Hackhathon",
+  "description": "Skill Swap API",
   "license": "ISC",
   "author": "Shriyam",
   "type": "commonjs",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
