@@ -2,7 +2,7 @@
 
 A React and Express app for exchanging skills with other members. Users can create a profile, find people by skill and availability, and manage swap requests.
 
-Built by Yash Gupta, Aastha Kumari, Shriyam Chaudhary and Abhishek Aryan for the Odoo hackathon. [Project presentation](https://www.canva.com/design/DAGs7fg4gYg/MJTZK18Y3r-0xZ9gemlbIA/edit).
+Project built for Odoo India Hackathon 2025.
 
 ## What works
 
